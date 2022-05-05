@@ -1,0 +1,70 @@
+Fakulta informačních technologií Vysokého učení technického v Brně
+
+Projekt č. 1 - Prelomenie šifry
+Kryptografie (KRY)
+Autor: Adam Švenk
+Login: xsvenk00
+Dátum: 29.04.2022
+
+1. Použitá šifra
+
+Po skúmaní zašifrovanéto textu a časti dostupného dešifrovaného textu som zistil, že rovnaké znaky z dešifrovaného textu nie sú rovnaké.
+Začal som teda s analýzou textu inou formou - nezameral som sa na samostantné, jednotlivé, znaky, ale na ich dvojice - digramy. Zistil som,
+že dva identické zašifrované digramy odpovedajú dvom identickým digramom v dešifrovanom texte. Predpokladal som, že sa teda jedná o
+substitučnú šifru. Všimol som si, že spoluhlásky ako x, z, j, q, k sa vyskytujú častejšie ako v otvorenom texte a digramy s týmito spoluhláskami sa
+vyskytujú taktiež častejšie. Taktiež som si uvedomil aj fakt, že žiadny digram zašifrovaného textu neobsahuje dve rovnaké písmena. Taktiež
+som si všimol, že žiadny zašifrovaný digram nikdy neobsahuje znaky tvoriace pôvodný digram. Zaujal ma aj fakt, že dva digramy, ktoré obsahovali
+rovnaké písmená, čiže boli reverzované, obsahovali v zašifrovanej podobe rovnaké znaky, no taktiež boli reverzované. Z nápovedy uvedenej
+v zadaní projektu som spoločne s uvedenými zisteniami a informáciami z prednášky usúdil, že sa s najväčšou pravdepodobnosťou jedná o Playfairovu šifru.
+Tomuto nasvädčovali aj ostatné časti nápovedy uvedenej v zadaní - šifra pochádza z polovice 19. storočia, bola použitá v praxi počas 1. a 2. svetovej vojny.
+Výsledkom bol predpoklad, že sa jedná o Playfairovu šifru. Viac o Playfairovej šifre, jej vlastnostiach, jej šifrovaní a dešifrovaní je možné nájsť na
+(https://en.wikipedia.org/wiki/Playfair_cipher)
+
+2. Tajný kľúč
+
+Poskytnutý dešifrovaný text a zašifrovaný text som si rozdelil na digramy, ktoré som si zapísal pod seba. Následne som hľadal dva páry digramov,
+v ktorých prvý pár obsahuje ako druhý znak rovnaký znak, ako druhý pár na prvej pozícii (napríklad digramy HT a TO). Takéto dvojice som spojil
+a odstránil duplicitný znak v nich. Takto som vytvoril nasledovné trojice znakov {EHT, HTO, SAB, AUZ, NDH, CEX, WLI, PLS}. Tieto trojice sú špecifické tým,
+že všetky uvedené písmená, ktoré ich tvoria, sa nachádzajú v rovnakom riadku, prípadne v rovnakom stĺpci. Vďaka tomu som mohol začať postupne vytvárať
+tabuľku s kľúčom.
+
+D H - - N
+- T - W -
+- O P L S
+- - - I A
+C E X - B
+
+Tento úkon bol náročný, nakoľko hľadanie správneho umiestnenia jednotlivých slov (trojíc znakov) vyžadovalo skúšanie väčšieho počtu rôznych možností.
+Takto vyplnená tabuľka s kľúčom avšak obsahovala miesta, ktoré boli stále prázdne. Vďaka spôsobu šifrovania a dešifrovania tejto šifry,
+ktoré prebieha "v obdĺžniku", som hľadal obdĺžniky, v ktorých chýbal vyplnený jeden zo štyroch rohov. Príkladom je napríklad (T-W-I). Následne som potreboval
+nájsť dvojicu digramov, ktoré obsahujú znaky T, W a I. Takúto dvojicu sa mi podarilo nájsť (IT a ZW). Vďaka vlastnostiam Playfairovej šifry som teda dostal
+písmenko (Z), ktoré sa nachádza v rohu spomínaného obdĺžnika. Rovnakým spôsobom som postupoval pre zvyšné obdĺžniky, až som nakoniec vyplnil tabuľku s kľúčom.
+
+D H K M N
+R T V W Y
+G O P L S
+U Z Q I A
+C E X F B
+
+Takto plne vyplnená tabuľka predstavovala samotný kľúč Playfairovej šifry. Pomocou on-line nástroja na dekódovanie zašifrovaného textu dostupného na
+(https://www.boxentriq.com/code-breaking/playfair-cipher) som následne s odhaleným kľúčom dešifroval zadaný text.
+
+3. Dešifrovaný text
+
+AS HE APPROACHED A LITTLE NEARER HE THOUGHT HE SAW SOMETHING WHITE HANGING IN THE MIDST OF THE TREE HE PAUSED AND CEASED WHISTLING BUT ON LOOKING MORE
+NARROWLY PERCEIVED THAT IT WAS A PLACE WHERE THE TREE HAD BEEN SCATHED BY LIGHTNING AND THE WHITE WOXOD LAID BARE SUDXDENLY HE HEARD A GROAN HIS TEXETH
+CHATXTERED AND HIS KNEES SMOTE AGAINST THE SADDLE IT WAS BUTX THE RUBBING OF ONE HUGE BOUGH UPON ANOTHER AS THEY WERE SWAYED ABOUT BY THE BREEZE HE PASSED
+THE TREXE IN SAFETY BUT NEW PERILS LAY BEFORE HIM ABOUT TWO HUNDRED YARDS FROM THE TREXE A SMALL BROOK CROSSED THE ROAD AND RAN INTO A MARSHY AND THICKLY
+WOXODED GLEN KNOWN BY THE NAME OF WILEYS SWAMP A FEW ROUGH LOGS LAID SIDE BY SIDE SERVED FOR A BRIDGE OVER THIS STREAM ON THAT SIDE OF THE ROAD WHERE THE BROOK
+ENTERED THE WOOD A GROUP OF OAKS AND CHESTNUTS MATXTED THICK WITH WILD GRAPE VINES THREW A CAVERNOUS GLOOM OVER IT TO PASXS THIS BRIDGE WAS THE SEVERESTX TRIAL
+IT WAS AT THIS IDENTICAL SPOTX THAT THE UNFORTUNATE ANDR WAS CAPTURED AND UNDER THE COVERT OF THOSE CHESTNUTS AND VINES WERE THE STURDYX YEOMEN CONCEALED WHO
+SURPRISED HIM
+
+Finálny dešifrovaný text je ešte možné upraviť odstránením znakov X, ktoré značia duplicitné symboly idúce za sebou.
+
+
+
+
+
+
+
